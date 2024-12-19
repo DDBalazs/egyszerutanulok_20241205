@@ -34,7 +34,6 @@
             this.igazolvany = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
             this.cbtelepules = new System.Windows.Forms.ComboBox();
-            this.rbigszam = new System.Windows.Forms.RadioButton();
             this.label2 = new System.Windows.Forms.Label();
             this.txigszam = new System.Windows.Forms.TextBox();
             this.txosztaly = new System.Windows.Forms.TextBox();
@@ -48,9 +47,12 @@
             this.txvaros = new System.Windows.Forms.TextBox();
             this.txutca = new System.Windows.Forms.TextBox();
             this.btmod = new System.Windows.Forms.Button();
+            this.cxigaz = new System.Windows.Forms.CheckBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lbuzenet = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgadatok)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -114,18 +116,6 @@
             this.cbtelepules.Size = new System.Drawing.Size(406, 21);
             this.cbtelepules.TabIndex = 0;
             this.cbtelepules.SelectedIndexChanged += new System.EventHandler(this.cbtelepules_SelectedIndexChanged);
-            // 
-            // rbigszam
-            // 
-            this.rbigszam.AutoSize = true;
-            this.rbigszam.Location = new System.Drawing.Point(444, 22);
-            this.rbigszam.Name = "rbigszam";
-            this.rbigszam.Size = new System.Drawing.Size(177, 17);
-            this.rbigszam.TabIndex = 1;
-            this.rbigszam.TabStop = true;
-            this.rbigszam.Text = "Igazolvány száma változik!";
-            this.rbigszam.UseVisualStyleBackColor = true;
-            this.rbigszam.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
             // 
             // label2
             // 
@@ -236,18 +226,40 @@
             this.btmod.UseVisualStyleBackColor = true;
             this.btmod.Click += new System.EventHandler(this.btmod_Click);
             // 
+            // cxigaz
+            // 
+            this.cxigaz.AutoSize = true;
+            this.cxigaz.Location = new System.Drawing.Point(447, 25);
+            this.cxigaz.Name = "cxigaz";
+            this.cxigaz.Size = new System.Drawing.Size(174, 17);
+            this.cxigaz.TabIndex = 16;
+            this.cxigaz.Text = "Igazolvány száma változik";
+            this.cxigaz.UseVisualStyleBackColor = true;
+            this.cxigaz.CheckedChanged += new System.EventHandler(this.cxigaz_CheckedChanged);
+            // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.lbuzenet);
             this.panel1.Location = new System.Drawing.Point(444, 355);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(341, 37);
             this.panel1.TabIndex = 15;
+            // 
+            // lbuzenet
+            // 
+            this.lbuzenet.AutoSize = true;
+            this.lbuzenet.Location = new System.Drawing.Point(150, 12);
+            this.lbuzenet.Name = "lbuzenet";
+            this.lbuzenet.Size = new System.Drawing.Size(47, 13);
+            this.lbuzenet.TabIndex = 0;
+            this.lbuzenet.Text = "Üzenet";
             // 
             // Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(806, 404);
+            this.Controls.Add(this.cxigaz);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btmod);
             this.Controls.Add(this.txutca);
@@ -262,7 +274,6 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txigszam);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.rbigszam);
             this.Controls.Add(this.groupBox1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -272,6 +283,8 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgadatok)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -282,7 +295,6 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cbtelepules;
-        private System.Windows.Forms.RadioButton rbigszam;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txigszam;
         private System.Windows.Forms.TextBox txosztaly;
@@ -297,9 +309,11 @@
         private System.Windows.Forms.TextBox txutca;
         private System.Windows.Forms.Button btmod;
         private System.Windows.Forms.DataGridView dgadatok;
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.DataGridViewTextBoxColumn nev;
         private System.Windows.Forms.DataGridViewTextBoxColumn igazolvany;
+        private System.Windows.Forms.CheckBox cxigaz;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label lbuzenet;
     }
 }
 

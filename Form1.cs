@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -16,7 +17,7 @@ namespace egyszerutanulok_20241205
         List<Tanulok> lista = new List<Tanulok>();
         string elsosor;
         string igazolvanyszam;
-        int index = 0;
+        int index;
         public Form()
         {
             InitializeComponent();
@@ -53,27 +54,23 @@ namespace egyszerutanulok_20241205
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
-            if (rbigszam.Checked)
-            {
-                txigszam.Enabled = true;
-            }
+
         }
 
         private void txigszam_TextChanged(object sender, EventArgs e)
         {
-            //if(txigszam.Text.Length > 0)
-            //{
-            //    try
-            //    {
-            //         int.Parse(txigszam.Text);
-            //    }
-            //    catch
-            //    {
-            //        MessageBox.Show("Nem számot adtál meg!", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //        txigszam.Clear();
-            //        txigszam.Focus();
-            //    }
-            //}
+            if (txigszam.Text.Length > 0)
+            {
+                for(int i = 0; i < lista.Count; i++)
+                {
+                    if(txigszam.Text == lista[i].Igszam && index != i)
+                    {
+                        MessageBox.Show("Ilyen igazolványszám már másnál szerepel!", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        txigszam.Text = igazolvanyszam;
+                    }
+                }
+            }
+
         }
 
         private void txnev_TextChanged(object sender, EventArgs e)
@@ -117,7 +114,7 @@ namespace egyszerutanulok_20241205
         {
             DataGridViewRow sor = dgadatok.Rows[e.RowIndex];
             igazolvanyszam=sor.Cells["igazolvany"].Value.ToString();
-            txigszam.Text = igazolvanyszam;
+            index = 0;
             while(lista[index].Igszam != igazolvanyszam)
             {
                 index++;
@@ -125,9 +122,9 @@ namespace egyszerutanulok_20241205
             txnev.Text = lista[index].Nev;
             txosztaly.Text = lista[index].Osztaly;
             txigszam.Text = lista[index].Igszam;
+            txutca.Text = lista[index].Utca;
             txirszam.Text = lista[index].Irszam;
-            txirszam.Text = lista[index].Varos;
-            txvaros.Text = lista[index].Utca;
+            txvaros.Text = lista[index].Varos;
             dtszuletett.Value = lista[index].Szulido;
         }
 
@@ -177,7 +174,37 @@ namespace egyszerutanulok_20241205
                 lista[index].Irszam = txirszam.Text;
                 lista[index].Nev = txnev.Text;
                 lista[index].Utca = txutca.Text;
-                lista[index].Szulido =
+                lista[index].Szulido = dtszuletett.Value;
+
+                FileStream fs = new FileStream("..\\..\\src\\tanulo.csv", FileMode.Create);
+                StreamWriter sw = new StreamWriter(fs);
+                sw.Write(elsosor);
+
+                for(int i = 0; i < lista.Count; i++)
+                {
+                    sw.Write("\n" + lista[i].Igszam + ";" + lista[i].Nev + ";" + lista[i].Szulido.ToString() + ";" + lista[i].Osztaly + ";" + lista[i].Irszam + ";" + lista[i].Varos + ";" + lista[i].Utca);
+                }
+                sw.Close();
+                fs.Close();
+                lbuzenet.Text = "Sikeres módotsítás!";
+                txigszam.Clear();
+                txnev.Clear();
+                txosztaly.Clear();
+                txirszam.Clear();
+                txutca.Clear();
+                txvaros.Clear();
+            }
+        }
+
+        private void cxigaz_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cxigaz.Checked)
+            {
+                txigszam.Enabled = true;
+            }
+            else
+            {
+                txigszam.Enabled = false;
             }
         }
     }
